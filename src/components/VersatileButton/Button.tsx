@@ -3,7 +3,7 @@ import styles from './Button.module.css'
 export const Button = () => {
     return (
         <>
-            <button></button>
+            <button className={styles.btn}>click me</button>
         </>
     );
 };
