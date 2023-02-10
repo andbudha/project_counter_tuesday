@@ -36,23 +36,28 @@ export const Counter = () => {
                         id={1}
                         name={'SET'}
                         callBack={()=>{}}
+                        counterValue={counterValue}
                     />
                 </div>
             </div>
 
             {/*value setting container*/}
             <div className={styles.counter_container}>
-                <div className={styles.incr_display}>{counterValue}</div>
+                <div className={`${styles.incr_display} ${counterValue===5 && styles.max_val}`}>
+                    {counterValue}
+                </div>
                 <div className={styles.incr_btn_container}>
                     <Button
                         id={2}
                         name={'INCREMENT'}
                         callBack={incrementValueHandler}
+                        counterValue={counterValue}
                     />
                     <Button
                         id={3}
                         name={'RESET'}
                         callBack={resetValueHandler}
+                        counterValue={counterValue}
                     />
                 </div>
             </div>

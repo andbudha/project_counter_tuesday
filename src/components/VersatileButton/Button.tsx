@@ -5,6 +5,7 @@ type ButtonPropsType = {
     name: string
     callBack: ()=> void
     id: number
+    counterValue: number
 }
 export const Button = (props: ButtonPropsType) => {
 
@@ -17,6 +18,7 @@ export const Button = (props: ButtonPropsType) => {
             <button
                 className={styles.btn}
                 onClick={onClickHandler}
+                disabled={props.counterValue === 5 && props.id === 2}
             >
                 {props.name}
             </button>

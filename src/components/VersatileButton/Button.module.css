@@ -29,4 +29,7 @@
     width: 47%;
     height: 45%;
     margin: 0;
+    opacity: 0.4;
+    color: wheat;
+    background-color: crimson;
 }
