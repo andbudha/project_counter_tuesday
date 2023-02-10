@@ -2,9 +2,13 @@ import React, {ChangeEvent, useState} from 'react';
 import  styles from './Counter.module.css'
 import {Button} from "../VersatileButton/Button";
 export const Counter = () => {
-    //start value setting state
-    const[startValue, setStartValue]=useState(Number('0'))
 
+    //max value setting state
+    const[maxValue, setMaxValue]=useState(Number('0'));
+
+    //start value setting state
+    const[startValue, setStartValue]=useState(Number('0'));
+    console.log('start value:', startValue)
     //counter incrementing state
     const[counterValue, setCounterValue]=useState(0);
 
@@ -18,6 +22,11 @@ export const Counter = () => {
     const incrementValueHandler = () => {
         setCounterValue(counterValue + 1);
     }
+
+    //max value getting func
+    const maxValueGettingHandler = (event: ChangeEvent<HTMLInputElement>) => {
+        setMaxValue(Number(event.currentTarget.value));
+    }
     
     //start value catching func
     const startValueGettingHandler = (event: ChangeEvent<HTMLInputElement>) => {
@@ -27,6 +36,8 @@ export const Counter = () => {
     //value resetting func
     const resetValueHandler = () => {
         setCounterValue(0);
+        setMaxValue(0);
+        setStartValue(0);
     }
     return (
         <div className={styles.main_container}>
@@ -36,7 +47,7 @@ export const Counter = () => {
                 <div className={styles.set_display}>
                     <div className={styles.val_container}>
                         <h2>max-value:</h2>
-                        <input type="number"/>
+                        <input type="number" onChange={maxValueGettingHandler} value={maxValue}/>
                     </div>
                     <div className={styles.val_container}>
                         <h2>start-value:</h2>
@@ -49,13 +60,15 @@ export const Counter = () => {
                         name={'SET'}
                         callBack={valueSettingHandler}
                         counterValue={counterValue}
+                        maxValue={maxValue}
+                        startValue={startValue}
                     />
                 </div>
             </div>
 
             {/*value setting container*/}
             <div className={styles.counter_container}>
-                <div className={`${styles.incr_display} ${counterValue===5 && styles.max_val}`}>
+                <div className={`${styles.incr_display} ${counterValue=== maxValue && styles.max_val}`}>
                     {counterValue}
                 </div>
                 <div className={styles.incr_btn_container}>
@@ -64,12 +77,16 @@ export const Counter = () => {
                         name={'INCREMENT'}
                         callBack={incrementValueHandler}
                         counterValue={counterValue}
+                        maxValue={maxValue}
+                        startValue={startValue}
                     />
                     <Button
                         id={3}
                         name={'RESET'}
                         callBack={resetValueHandler}
                         counterValue={counterValue}
+                        maxValue={maxValue}
+                        startValue={startValue}
                     />
                 </div>
             </div>
