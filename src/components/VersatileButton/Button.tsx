@@ -27,6 +27,8 @@ export const Button = (props: ButtonPropsType) => {
                     || props.startValue === 0 && props.id === 1
                     || props.startValue === props.counterValue && props.id === 1
                     || props.btnState && props.id === 1
+                    || props.maxValue < props.startValue && props.id === 2
+
                 }
             >
                 {props.name}
