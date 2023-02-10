@@ -1,9 +1,24 @@
 import React from 'react';
 import styles from './Button.module.css'
-export const Button = () => {
+
+type ButtonPropsType = {
+    name: string
+    callBack: ()=> void
+}
+export const Button = (props: ButtonPropsType) => {
+
+    const onClickHandler = () => {
+        props.callBack();
+    }
+
     return (
         <>
-            <button className={styles.btn}>click me</button>
+            <button
+                className={styles.btn}
+                onClick={onClickHandler}
+            >
+                {props.name}
+            </button>
         </>
     );
 };

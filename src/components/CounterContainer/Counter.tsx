@@ -16,14 +16,14 @@ export const Counter = () => {
                     </div>
                 </div>
                 <div className={styles.set_btn_container}>
-                    <Button/>
+                    <Button name={'SET'} callBack={()=>{}}/>
                 </div>
             </div>
             <div className={styles.counter_container}>
                 <div className={styles.incr_display}>0</div>
                 <div className={styles.incr_btn_container}>
-                    <Button/>
-                    <Button/>
+                    <Button name={'INCREMENT'} callBack={()=>{}}/>
+                    <Button name={'RESET'} callBack={()=>{}}/>
                 </div>
             </div>
         </div>
