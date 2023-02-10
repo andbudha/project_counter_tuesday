@@ -68,7 +68,7 @@ export const Counter = () => {
 
             {/*value setting container*/}
             <div className={styles.counter_container}>
-                <div className={`${styles.incr_display} ${counterValue=== maxValue && styles.max_val}`}>
+                <div className={`${styles.incr_display} ${maxValue !== 0 && counterValue === maxValue && styles.max_val}`}>
                     {counterValue}
                 </div>
                 <div className={styles.incr_btn_container}>

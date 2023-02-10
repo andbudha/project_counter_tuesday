@@ -20,7 +20,7 @@ export const Button = (props: ButtonPropsType) => {
             <button
                 className={styles.btn}
                 onClick={onClickHandler}
-                disabled={props.counterValue === props.maxValue && props.id === 2 || props.startValue===0 && props.id==1 }
+                disabled={props.counterValue === props.maxValue && props.id === 2}
             >
                 {props.name}
             </button>
