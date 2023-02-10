@@ -90,3 +90,8 @@ input {
 .max_val {
     color: crimson;
 }
+
+
+.error_msg {
+    color: crimson;
+}

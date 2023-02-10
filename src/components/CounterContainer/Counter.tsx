@@ -2,20 +2,25 @@ import React, {ChangeEvent, useState} from 'react';
 import  styles from './Counter.module.css'
 import {Button} from "../VersatileButton/Button";
 export const Counter = () => {
+    //btn state
+    const[btnState, setBtnState]=useState(false);
 
     //max value setting state
     const[maxValue, setMaxValue]=useState(Number('0'));
 
     //start value setting state
     const[startValue, setStartValue]=useState(Number('0'));
-    console.log('start value:', startValue)
+
     //counter incrementing state
     const[counterValue, setCounterValue]=useState(0);
 
+    //error state
+    const[error, setError]=useState(true);
 
     //max&start values setting func
     const valueSettingHandler = () => {
         setCounterValue(startValue);
+        setBtnState(true);
     }
     
     //value incrementing func
@@ -38,6 +43,7 @@ export const Counter = () => {
         setCounterValue(0);
         setMaxValue(0);
         setStartValue(0);
+        setBtnState(false);
     }
     return (
         <div className={styles.main_container}>
@@ -62,14 +68,19 @@ export const Counter = () => {
                         counterValue={counterValue}
                         maxValue={maxValue}
                         startValue={startValue}
+                        btnState={btnState}
                     />
                 </div>
             </div>
 
             {/*value setting container*/}
             <div className={styles.counter_container}>
-                <div className={`${styles.incr_display} ${maxValue !== 0 && counterValue === maxValue && styles.max_val}`}>
-                    {counterValue}
+                <div className={`
+                ${styles.incr_display} 
+                ${maxValue !== 0 && counterValue === maxValue && styles.max_val}
+               
+                `}>
+                    <span>{counterValue}</span>
                 </div>
                 <div className={styles.incr_btn_container}>
                     <Button
@@ -79,6 +90,7 @@ export const Counter = () => {
                         counterValue={counterValue}
                         maxValue={maxValue}
                         startValue={startValue}
+                        btnState={btnState}
                     />
                     <Button
                         id={3}
@@ -87,6 +99,7 @@ export const Counter = () => {
                         counterValue={counterValue}
                         maxValue={maxValue}
                         startValue={startValue}
+                        btnState={btnState}
                     />
                 </div>
             </div>
