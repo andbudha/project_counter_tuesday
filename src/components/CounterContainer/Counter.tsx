@@ -1,15 +1,27 @@
-import React, {useState} from 'react';
+import React, {ChangeEvent, useState} from 'react';
 import  styles from './Counter.module.css'
 import {Button} from "../VersatileButton/Button";
 export const Counter = () => {
+    //start value setting state
+    const[startValue, setStartValue]=useState(Number('0'))
 
     //counter incrementing state
     const[counterValue, setCounterValue]=useState(0);
 
+
+    //max&start values setting func
+    const valueSettingHandler = () => {
+        setCounterValue(startValue);
+    }
     
     //value incrementing func
     const incrementValueHandler = () => {
         setCounterValue(counterValue + 1);
+    }
+    
+    //start value catching func
+    const startValueGettingHandler = (event: ChangeEvent<HTMLInputElement>) => {
+        setStartValue(Number(event.currentTarget.value));
     }
 
     //value resetting func
@@ -28,14 +40,14 @@ export const Counter = () => {
                     </div>
                     <div className={styles.val_container}>
                         <h2>start-value:</h2>
-                        <input type="number"/>
+                        <input type="number" onChange={startValueGettingHandler} value={startValue}/>
                     </div>
                 </div>
                 <div className={styles.set_btn_container}>
                     <Button
                         id={1}
                         name={'SET'}
-                        callBack={()=>{}}
+                        callBack={valueSettingHandler}
                         counterValue={counterValue}
                     />
                 </div>
