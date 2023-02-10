@@ -53,11 +53,21 @@ export const Counter = () => {
                 <div className={styles.set_display}>
                     <div className={styles.val_container}>
                         <h2>max-value:</h2>
-                        <input type="number" onChange={maxValueGettingHandler} value={maxValue}/>
+                        <input
+                            type="number"
+                            onChange={maxValueGettingHandler}
+                            value={maxValue}
+                            className={`${maxValue < 0 && styles.input_error}`}
+                        />
                     </div>
                     <div className={styles.val_container}>
                         <h2>start-value:</h2>
-                        <input type="number" onChange={startValueGettingHandler} value={startValue}/>
+                        <input
+                            type="number"
+                            onChange={startValueGettingHandler}
+                            value={startValue}
+                            className={`${startValue < 0 && styles.input_error}`}
+                        />
                     </div>
                 </div>
                 <div className={styles.set_btn_container}>
@@ -78,7 +88,6 @@ export const Counter = () => {
                 <div className={`
                 ${styles.incr_display} 
                 ${maxValue !== 0 && counterValue === maxValue && styles.max_val}
-               
                 `}>
                     <span>{counterValue}</span>
                 </div>

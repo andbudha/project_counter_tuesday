@@ -95,3 +95,8 @@ input {
 .error_msg {
     color: crimson;
 }
+
+.input_error {
+    background-color: crimson;
+    opacity: 0.8;
+}
