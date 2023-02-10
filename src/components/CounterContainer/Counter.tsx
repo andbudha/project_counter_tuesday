@@ -1,9 +1,25 @@
-import React from 'react';
+import React, {useState} from 'react';
 import  styles from './Counter.module.css'
 import {Button} from "../VersatileButton/Button";
 export const Counter = () => {
+
+    //counter incrementing state
+    const[counterValue, setCounterValue]=useState(0);
+
+    
+    //value incrementing func
+    const incrementValueHandler = () => {
+        setCounterValue(counterValue + 1);
+    }
+
+    //value resetting func
+    const resetValueHandler = () => {
+        setCounterValue(0);
+    }
     return (
         <div className={styles.main_container}>
+
+            {/*Incrementing counter*/}
             <div className={styles.counter_container}>
                 <div className={styles.set_display}>
                     <div className={styles.val_container}>
@@ -16,14 +32,28 @@ export const Counter = () => {
                     </div>
                 </div>
                 <div className={styles.set_btn_container}>
-                    <Button name={'SET'} callBack={()=>{}}/>
+                    <Button
+                        id={1}
+                        name={'SET'}
+                        callBack={()=>{}}
+                    />
                 </div>
             </div>
+
+            {/*value setting container*/}
             <div className={styles.counter_container}>
-                <div className={styles.incr_display}>0</div>
+                <div className={styles.incr_display}>{counterValue}</div>
                 <div className={styles.incr_btn_container}>
-                    <Button name={'INCREMENT'} callBack={()=>{}}/>
-                    <Button name={'RESET'} callBack={()=>{}}/>
+                    <Button
+                        id={2}
+                        name={'INCREMENT'}
+                        callBack={incrementValueHandler}
+                    />
+                    <Button
+                        id={3}
+                        name={'RESET'}
+                        callBack={resetValueHandler}
+                    />
                 </div>
             </div>
         </div>

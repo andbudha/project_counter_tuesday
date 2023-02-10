@@ -4,6 +4,7 @@ import styles from './Button.module.css'
 type ButtonPropsType = {
     name: string
     callBack: ()=> void
+    id: number
 }
 export const Button = (props: ButtonPropsType) => {
 
