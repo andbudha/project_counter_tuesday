@@ -16,7 +16,6 @@ export const Counter = () => {
 
     //error state
     const[error, setError]=useState(false);
-    console.log(error);
 
 
     //max&start values setting func
@@ -101,7 +100,9 @@ export const Counter = () => {
                 ${styles.incr_display} 
                 ${maxValue !== 0 && counterValue === maxValue && styles.max_val}
                 `}>
-                    <span>{error || startValue < 0 || maxValue < 0 ? 'Invalid Number!' : counterValue}</span>
+                    <span className={`${error ? styles.error_msg : ''}`}>
+                        {error || startValue < 0 || maxValue < 0 ? 'Invalid Number!' : counterValue}
+                    </span>
                 </div>
                 <div className={styles.incr_btn_container}>
                     <Button
