@@ -15,7 +15,9 @@ export const Counter = () => {
     const[counterValue, setCounterValue]=useState(0);
 
     //error state
-    const[error, setError]=useState(true);
+    const[error, setError]=useState(false);
+    console.log(error);
+
 
     //max&start values setting func
     const valueSettingHandler = () => {
@@ -31,11 +33,21 @@ export const Counter = () => {
     //max value getting func
     const maxValueGettingHandler = (event: ChangeEvent<HTMLInputElement>) => {
         setMaxValue(Number(event.currentTarget.value));
+        if(Number(event.currentTarget.value) < 0){
+            setError(true)
+        } else {
+            setError(false);
+        }
     }
     
     //start value catching func
     const startValueGettingHandler = (event: ChangeEvent<HTMLInputElement>) => {
         setStartValue(Number(event.currentTarget.value));
+        if(Number(event.currentTarget.value) < 0){
+            setError(true)
+        } else {
+            setError(false);
+        }
     }
 
     //value resetting func
@@ -87,9 +99,9 @@ export const Counter = () => {
             <div className={styles.counter_container}>
                 <div className={`
                 ${styles.incr_display} 
-                ${maxValue !== 0 && counterValue === maxValue && styles.max_val}
+                ${maxValue !== 0 && counterValue === maxValue && error && styles.max_val}
                 `}>
-                    <span>{counterValue}</span>
+                    <span>{error || startValue < 0 || maxValue < 0 ? 'Invalid Number!' : counterValue}</span>
                 </div>
                 <div className={styles.incr_btn_container}>
                     <Button
