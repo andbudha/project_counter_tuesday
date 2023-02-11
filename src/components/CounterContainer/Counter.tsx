@@ -99,7 +99,7 @@ export const Counter = () => {
             <div className={styles.counter_container}>
                 <div className={`
                 ${styles.incr_display} 
-                ${maxValue !== 0 && counterValue === maxValue && error && styles.max_val}
+                ${maxValue !== 0 && counterValue === maxValue && styles.max_val}
                 `}>
                     <span>{error || startValue < 0 || maxValue < 0 ? 'Invalid Number!' : counterValue}</span>
                 </div>
