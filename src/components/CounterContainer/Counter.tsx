@@ -101,7 +101,7 @@ export const Counter = () => {
                 ${maxValue !== 0 && counterValue === maxValue && styles.max_val}
                 `}>
                     <span className={`${error ? styles.error_msg : ''}`}>
-                        {error || startValue < 0 || maxValue < 0 ? 'Invalid Number!' : counterValue}
+                        {error || startValue < 0 || maxValue < 0 ? 'Invalid Input Number!' : counterValue}
                     </span>
                 </div>
                 <div className={styles.incr_btn_container}>
