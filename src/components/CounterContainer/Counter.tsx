@@ -1,4 +1,4 @@
-import React, {ChangeEvent, useState} from 'react';
+import React, {ChangeEvent, FocusEvent, useState} from 'react';
 import  styles from './Counter.module.css'
 import {Button} from "../VersatileButton/Button";
 export const Counter = () => {
@@ -100,7 +100,7 @@ export const Counter = () => {
                 ${styles.incr_display} 
                 ${maxValue !== 0 && counterValue === maxValue && styles.max_val}
                 `}>
-                    <span className={`${error ? styles.error_msg : ''}`}>
+                    <span className={`${error || startValue < 0 || maxValue < 0 ? styles.error_msg : ''}`}>
                         {error || startValue < 0 || maxValue < 0 ? 'Invalid Input Number!' : counterValue}
                     </span>
                 </div>
