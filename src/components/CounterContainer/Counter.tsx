@@ -1,4 +1,4 @@
-import React, {ChangeEvent, FocusEvent, useEffect, useState} from 'react';
+import React, {ChangeEvent, useEffect, useState} from 'react';
 import  styles from './Counter.module.css'
 import {Button} from "../VersatileButton/Button";
 export const Counter = () => {
