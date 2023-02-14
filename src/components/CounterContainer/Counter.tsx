@@ -1,22 +1,32 @@
-import React, {ChangeEvent, FocusEvent, useState} from 'react';
+import React, {ChangeEvent, FocusEvent, useEffect, useState} from 'react';
 import  styles from './Counter.module.css'
 import {Button} from "../VersatileButton/Button";
-import {stringify} from "querystring";
 export const Counter = () => {
     //btn state
     const[btnState, setBtnState]=useState(false);
 
     //max value setting state
-    const[maxValue, setMaxValue]=useState(Number('0'));
+    const[maxValue, setMaxValue]=useState(Number(localStorage.getItem('maxValue')));
 
     //start value setting state
-    const[startValue, setStartValue]=useState(Number('0'));
+    const[startValue, setStartValue]=useState(Number(localStorage.getItem('startValue')));
 
     //counter incrementing state
-    const[counterValue, setCounterValue]=useState(Number('0'));
+    const[counterValue, setCounterValue]=useState(Number(localStorage.getItem('startValue')));
 
     //error state
     const[error, setError]=useState(false);
+
+
+    //to local storage max-value setting func
+    useEffect(()=>{
+        localStorage.setItem('maxValue', JSON.stringify(maxValue));
+    },[maxValue]);
+
+    //to local storage start-value setting func
+    useEffect(()=>{
+        localStorage.setItem('startValue', JSON.stringify(startValue));
+    },[startValue]);
 
 
     //max&start values setting func
