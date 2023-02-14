@@ -12,7 +12,7 @@ export const Counter = () => {
     const[startValue, setStartValue]=useState(Number(localStorage.getItem('startValue')));
 
     //counter incrementing state
-    const[counterValue, setCounterValue]=useState(Number(localStorage.getItem('startValue')));
+    const[counterValue, setCounterValue]=useState(Number(localStorage.getItem('maxValue')));
 
     //error state
     const[error, setError]=useState(false);
