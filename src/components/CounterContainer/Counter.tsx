@@ -68,7 +68,7 @@ export const Counter = () => {
                             type="number"
                             onChange={maxValueGettingHandler}
                             value={maxValue}
-                            className={`${maxValue < 0 && styles.input_error}`}
+                            className={`${maxValue < 0 || maxValue > 0 && maxValue === startValue || maxValue < startValue ? styles.input_error : ''}`}
                         />
                     </div>
                     <div className={styles.val_container}>
@@ -77,7 +77,7 @@ export const Counter = () => {
                             type="number"
                             onChange={startValueGettingHandler}
                             value={startValue}
-                            className={`${startValue < 0 && styles.input_error}`}
+                            className={`${startValue < 0 || startValue > 0 && maxValue === startValue || maxValue < startValue ? styles.input_error : ''}`}
                         />
                     </div>
                 </div>
@@ -100,8 +100,8 @@ export const Counter = () => {
                 ${styles.incr_display} 
                 ${maxValue !== 0 && counterValue === maxValue && styles.max_val}
                 `}>
-                    <span className={`${error || startValue < 0 || maxValue < 0 ? styles.error_msg : ''}`}>
-                        {error || startValue < 0 || maxValue < 0 ? 'Invalid Input Number!' : counterValue}
+                    <span className={`${error || startValue < 0 || maxValue < 0 || maxValue > 0 && maxValue === startValue || maxValue < startValue ? styles.error_msg : ''}`}>
+                        {error || startValue < 0 || maxValue < 0 || maxValue > 0 && maxValue === startValue || maxValue < startValue ? 'Invalid Input Number!' : counterValue}
                     </span>
                 </div>
                 <div className={styles.incr_btn_container}>
