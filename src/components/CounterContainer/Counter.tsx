@@ -66,6 +66,7 @@ export const Counter = () => {
         setMaxValue(0);
         setStartValue(0);
         setBtnState(false);
+        localStorage.clear();
     }
     return (
         <div className={styles.main_container}>
@@ -79,7 +80,9 @@ export const Counter = () => {
                             type="number"
                             onChange={maxValueGettingHandler}
                             value={maxValue}
-                            className={`${maxValue < 0 || maxValue > 0 && maxValue === startValue || maxValue < startValue ? styles.input_error : ''}`}
+                            className={`${maxValue < 0 
+                            || maxValue > 0 && maxValue === startValue 
+                            || maxValue < startValue ? styles.input_error : ''}`}
                         />
                     </div>
                     <div className={styles.val_container}>
@@ -88,7 +91,9 @@ export const Counter = () => {
                             type="number"
                             onChange={startValueGettingHandler}
                             value={startValue}
-                            className={`${startValue < 0 || startValue > 0 && maxValue === startValue || maxValue < startValue ? styles.input_error : ''}`}
+                            className={`${startValue < 0 
+                            || startValue > 0 && maxValue === startValue 
+                            || maxValue < startValue ? styles.input_error : ''}`}
                         />
                     </div>
                 </div>
