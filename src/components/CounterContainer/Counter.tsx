@@ -1,48 +1,42 @@
 import React, {ChangeEvent, useEffect, useState} from 'react';
 import  styles from './Counter.module.css'
 import {Button} from "../VersatileButton/Button";
+import {useDispatch, useSelector} from "react-redux";
+import {AppRootStateType} from "../../store/store";
+import {counterValSettingAC, CounterValStateType} from "../../reducers/countervaluereducer";
+import {startValSettingAC, StartValStateType} from "../../reducers/startvaluereducer";
+import {maxValSettingAC, MaxValStateType} from "../../reducers/maxvaluereducer";
 export const Counter = () => {
     //btn state
     const[btnState, setBtnState]=useState(false);
 
-    //max value setting state
-    const[maxValue, setMaxValue]=useState(Number(localStorage.getItem('maxValue')));
-
-    //start value setting state
-    const[startValue, setStartValue]=useState(Number(localStorage.getItem('startValue')));
-
-    //counter incrementing state
-    const[counterValue, setCounterValue]=useState(Number(localStorage.getItem('maxValue')));
-
     //error state
     const[error, setError]=useState(false);
 
+    const counterValue = useSelector<AppRootStateType, CounterValStateType>(state => state.counterValue);
 
-    //to local storage max-value setting func
-    useEffect(()=>{
-        localStorage.setItem('maxValue', JSON.stringify(maxValue));
-    },[maxValue]);
+    const startValue = useSelector<AppRootStateType, StartValStateType>(state => state.startValue);
 
-    //to local storage start-value setting func
-    useEffect(()=>{
-        localStorage.setItem('startValue', JSON.stringify(startValue));
-    },[startValue]);
+    const maxValue = useSelector<AppRootStateType, MaxValStateType>(state => state.maxValue);
+
+    const dispatch = useDispatch();
+
 
 
     //max&start values setting func
-    const valueSettingHandler = () => {
-        setCounterValue(startValue);
+    const valueSettingHandler = (startValue: number) => {
+        dispatch(counterValSettingAC(startValue));
         setBtnState(true);
     }
     
     //value incrementing func
-    const incrementValueHandler = () => {
-        setCounterValue(counterValue + 1);
+    const incrementValueHandler = (counterValue: number) => {
+        dispatch(counterValSettingAC(counterValue + 1));
     }
 
     //max value getting func
     const maxValueGettingHandler = (event: ChangeEvent<HTMLInputElement>) => {
-        setMaxValue(Number(event.currentTarget.value));
+        dispatch(maxValSettingAC(Number(event.currentTarget.value)));
         if(Number(event.currentTarget.value) < 0){
             setError(true)
         } else {
@@ -52,7 +46,7 @@ export const Counter = () => {
     
     //start value catching func
     const startValueGettingHandler = (event: ChangeEvent<HTMLInputElement>) => {
-        setStartValue(Number(event.currentTarget.value));
+        dispatch(startValSettingAC(Number(event.currentTarget.value)));
         if(Number(event.currentTarget.value) < 0){
             setError(true)
         } else {
@@ -62,9 +56,9 @@ export const Counter = () => {
 
     //value resetting func
     const resetValueHandler = () => {
-        setCounterValue(0);
-        setMaxValue(0);
-        setStartValue(0);
+        dispatch(counterValSettingAC(0));
+        dispatch(maxValSettingAC(0));
+        dispatch(startValSettingAC(0));
         setBtnState(false);
         localStorage.clear();
     }
@@ -101,7 +95,7 @@ export const Counter = () => {
                     <Button
                         id={1}
                         name={'SET'}
-                        callBack={valueSettingHandler}
+                        callBack={()=>valueSettingHandler(startValue)}
                         counterValue={counterValue}
                         maxValue={maxValue}
                         startValue={startValue}
@@ -124,7 +118,7 @@ export const Counter = () => {
                     <Button
                         id={2}
                         name={'INCREMENT'}
-                        callBack={incrementValueHandler}
+                        callBack={()=>incrementValueHandler(counterValue)}
                         counterValue={counterValue}
                         maxValue={maxValue}
                         startValue={startValue}
