@@ -5,7 +5,7 @@ import {counterValReducer} from "../reducers/countervaluereducer";
 
 
 const rootReducer = combineReducers({
-    counterVal: counterValReducer,
+    counterValue: counterValReducer,
     startValue: startValReducer,
     maxValue: maxValReducer
 });

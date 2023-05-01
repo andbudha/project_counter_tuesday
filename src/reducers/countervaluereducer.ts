@@ -7,7 +7,7 @@ type CounterValAcType = counterValSettingACType;
 export const counterValReducer = (state: CounterValStateType = InitialState, action: CounterValAcType): CounterValStateType => {
     switch (action.type) {
         case "SET-COUNTER-VALUE": {
-            return action.payload.value + 1;
+            return action.payload.value;
         }
         default: {
             return state;
