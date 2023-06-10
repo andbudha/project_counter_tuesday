@@ -4,6 +4,7 @@ export type StartValStateType = number;
 const InitialState: StartValStateType = 0;
 
 type StartValAcType = startValSettingACType;
+
 export const startValReducer = (state: StartValStateType = InitialState, action: StartValAcType): StartValStateType => {
     switch (action.type) {
         case "SET-START-VALUE": {

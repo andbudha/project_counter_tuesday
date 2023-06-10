@@ -3,7 +3,7 @@ import styles from './Button.module.css'
 
 type ButtonPropsType = {
     name: string
-    callBack: ()=> void
+    callBack: () => void
     id: number
     counterValue: number
     maxValue: number
@@ -11,7 +11,6 @@ type ButtonPropsType = {
     btnState: boolean
 }
 export const Button = (props: ButtonPropsType) => {
-
 
     const onClickHandler = () => {
         props.callBack();
