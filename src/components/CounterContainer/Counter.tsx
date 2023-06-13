@@ -1,17 +1,17 @@
-import React, {ChangeEvent, useState} from 'react';
-import  styles from './Counter.module.css'
-import {Button} from "../VersatileButton/Button";
-import {useDispatch, useSelector} from "react-redux";
-import {AppRootStateType} from "../../store/store";
-import {counterValSettingAC, CounterValStateType} from "../../reducers/countervaluereducer";
-import {startValSettingAC, StartValStateType} from "../../reducers/startvaluereducer";
-import {maxValSettingAC, MaxValStateType} from "../../reducers/maxvaluereducer";
+import React, { ChangeEvent, useState } from 'react';
+import styles from './Counter.module.css'
+import { Button } from "../VersatileButton/Button";
+import { useDispatch, useSelector } from "react-redux";
+import { AppRootStateType } from "../../store/store";
+import { counterValSettingAC, CounterValStateType } from "../../reducers/countervaluereducer";
+import { startValSettingAC, StartValStateType } from "../../reducers/startvaluereducer";
+import { maxValSettingAC, MaxValStateType } from "../../reducers/maxvaluereducer";
 export const Counter = () => {
     //btn state
-    const[btnState, setBtnState]=useState(false);
+    const [btnState, setBtnState] = useState(false);
 
     //error state
-    const[error, setError]=useState(false);
+    const [error, setError] = useState(false);
 
     const counterValue = useSelector<AppRootStateType, CounterValStateType>(state => state.counterValue);
 
@@ -28,7 +28,7 @@ export const Counter = () => {
         dispatch(counterValSettingAC(startValue));
         setBtnState(true);
     }
-    
+
     //value incrementing func
     const incrementValueHandler = (counterValue: number) => {
         dispatch(counterValSettingAC(counterValue + 1));
@@ -37,17 +37,17 @@ export const Counter = () => {
     //max value getting func
     const maxValueGettingHandler = (event: ChangeEvent<HTMLInputElement>) => {
         dispatch(maxValSettingAC(Number(event.currentTarget.value)));
-        if(Number(event.currentTarget.value) < 0){
+        if (Number(event.currentTarget.value) < 0) {
             setError(true)
         } else {
             setError(false);
         }
     }
-    
+
     //start value catching func
     const startValueGettingHandler = (event: ChangeEvent<HTMLInputElement>) => {
         dispatch(startValSettingAC(Number(event.currentTarget.value)));
-        if(Number(event.currentTarget.value) < 0){
+        if (Number(event.currentTarget.value) < 0) {
             setError(true)
         } else {
             setError(false);
@@ -74,9 +74,9 @@ export const Counter = () => {
                             type="number"
                             onChange={maxValueGettingHandler}
                             value={maxValue}
-                            className={`${maxValue < 0 
-                            || maxValue > 0 && maxValue === startValue 
-                            || maxValue < startValue ? styles.input_error : ''}`}
+                            className={`${maxValue < 0
+                                || maxValue > 0 && maxValue === startValue.value
+                                || maxValue < startValue.value ? styles.input_error : ''}`}
                         />
                     </div>
                     <div className={styles.val_container}>
@@ -84,10 +84,10 @@ export const Counter = () => {
                         <input
                             type="number"
                             onChange={startValueGettingHandler}
-                            value={startValue}
-                            className={`${startValue < 0 
-                            || startValue > 0 && maxValue === startValue 
-                            || maxValue < startValue ? styles.input_error : ''}`}
+                            value={startValue.value}
+                            className={`${startValue.value < 0
+                                || startValue.value > 0 && maxValue === startValue.value
+                                || maxValue < startValue.value ? styles.input_error : ''}`}
                         />
                     </div>
                 </div>
@@ -95,10 +95,10 @@ export const Counter = () => {
                     <Button
                         id={1}
                         name={'SET'}
-                        callBack={()=>valueSettingHandler(startValue)}
+                        callBack={() => valueSettingHandler(startValue.value)}
                         counterValue={counterValue}
                         maxValue={maxValue}
-                        startValue={startValue}
+                        startValue={startValue.value}
                         btnState={btnState}
                     />
                 </div>
@@ -110,18 +110,18 @@ export const Counter = () => {
                 ${styles.incr_display} 
                 ${maxValue !== 0 && counterValue === maxValue && styles.max_val}
                 `}>
-                    <span className={`${error || startValue < 0 || maxValue < 0 || maxValue > 0 && maxValue === startValue || maxValue < startValue ? styles.error_msg : ''}`}>
-                        {error || startValue < 0 || maxValue < 0 || maxValue > 0 && maxValue === startValue || maxValue < startValue ? 'Incorrect Value!' : counterValue}
+                    <span className={`${error || startValue.value < 0 || maxValue < 0 || maxValue > 0 && maxValue === startValue.value || maxValue < startValue.value ? styles.error_msg : ''}`}>
+                        {error || startValue.value < 0 || maxValue < 0 || maxValue > 0 && maxValue === startValue.value || maxValue < startValue.value ? 'Incorrect Value!' : counterValue}
                     </span>
                 </div>
                 <div className={styles.incr_btn_container}>
                     <Button
                         id={2}
                         name={'INCREMENT'}
-                        callBack={()=>incrementValueHandler(counterValue)}
+                        callBack={() => incrementValueHandler(counterValue)}
                         counterValue={counterValue}
                         maxValue={maxValue}
-                        startValue={startValue}
+                        startValue={startValue.value}
                         btnState={btnState}
                     />
                     <Button
@@ -130,7 +130,7 @@ export const Counter = () => {
                         callBack={resetValueHandler}
                         counterValue={counterValue}
                         maxValue={maxValue}
-                        startValue={startValue}
+                        startValue={startValue.value}
                         btnState={btnState}
                     />
                 </div>

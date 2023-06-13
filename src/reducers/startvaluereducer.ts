@@ -1,14 +1,16 @@
 
-export type StartValStateType = number;
 
-const InitialState: StartValStateType = 0;
 
-type StartValAcType = startValSettingACType;
+const InitialState = { value: 0 }
 
-export const startValReducer = (state: StartValStateType = InitialState, action: StartValAcType): StartValStateType => {
+export type StartValStateType = typeof InitialState;
+
+type AppActionsType = startValSettingACType
+
+export const startValReducer = (state: StartValStateType = InitialState, action: AppActionsType): StartValStateType => {
     switch (action.type) {
         case "SET-START-VALUE": {
-            return action.payload.value;
+            return { ...state, value: action.payload.value }
         }
         default: {
             return state;
