@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { AppRootStateType, useAppDispatch } from "../../store/store";
 import { counterValSettingAC, CounterValStateType } from "../../reducers/countervaluereducer";
 import { getStartLocalStorageValueTC, startValSettingAC, startValSettingTC, StartValStateType } from "../../reducers/startvaluereducer";
-import { maxValSettingAC, MaxValStateType } from "../../reducers/maxvaluereducer";
+import { getMaxLocalStorageValueTC, maxValSettingAC, maxValSettingTC, MaxValStateType } from "../../reducers/maxvaluereducer";
 export const Counter = () => {
     //btn state
     const [btnState, setBtnState] = useState(false);
@@ -22,7 +22,8 @@ export const Counter = () => {
     const dispatch = useAppDispatch();
 
     useEffect(() => {
-        dispatch(getStartLocalStorageValueTC())
+        dispatch(getStartLocalStorageValueTC());
+        dispatch(getMaxLocalStorageValueTC());
     }, [])
     //max&start values setting func
     const valueSettingHandler = (startValue: number) => {
@@ -37,7 +38,7 @@ export const Counter = () => {
 
     //max value getting func
     const maxValueGettingHandler = (event: ChangeEvent<HTMLInputElement>) => {
-        dispatch(maxValSettingAC(Number(event.currentTarget.value)));
+        dispatch(maxValSettingTC(Number(event.currentTarget.value)));
         if (Number(event.currentTarget.value) < 0) {
             setError(true)
         } else {
