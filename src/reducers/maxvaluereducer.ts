@@ -1,6 +1,4 @@
 
-
-
 const InitialState = { value: 0 };
 
 export type MaxValStateType = typeof InitialState;

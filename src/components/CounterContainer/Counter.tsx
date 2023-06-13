@@ -96,7 +96,7 @@ export const Counter = () => {
                         id={1}
                         name={'SET'}
                         callBack={() => valueSettingHandler(startValue.value)}
-                        counterValue={counterValue}
+                        counterValue={counterValue.value}
                         maxValue={maxValue.value}
                         startValue={startValue.value}
                         btnState={btnState}
@@ -108,18 +108,18 @@ export const Counter = () => {
             <div className={styles.counter_container}>
                 <div className={`
                 ${styles.incr_display} 
-                ${maxValue.value !== 0 && counterValue === maxValue.value && styles.max_val}
+                ${maxValue.value !== 0 && counterValue.value === maxValue.value && styles.max_val}
                 `}>
                     <span className={`${error || startValue.value < 0 || maxValue.value < 0 || maxValue.value > 0 && maxValue.value === startValue.value || maxValue.value < startValue.value ? styles.error_msg : ''}`}>
-                        {error || startValue.value < 0 || maxValue.value < 0 || maxValue.value > 0 && maxValue.value === startValue.value || maxValue.value < startValue.value ? 'Incorrect Value!' : counterValue}
+                        {error || startValue.value < 0 || maxValue.value < 0 || maxValue.value > 0 && maxValue.value === startValue.value || maxValue.value < startValue.value ? 'Incorrect Value!' : counterValue.value}
                     </span>
                 </div>
                 <div className={styles.incr_btn_container}>
                     <Button
                         id={2}
                         name={'INCREMENT'}
-                        callBack={() => incrementValueHandler(counterValue)}
-                        counterValue={counterValue}
+                        callBack={() => incrementValueHandler(counterValue.value)}
+                        counterValue={counterValue.value}
                         maxValue={maxValue.value}
                         startValue={startValue.value}
                         btnState={btnState}
@@ -128,7 +128,7 @@ export const Counter = () => {
                         id={3}
                         name={'RESET'}
                         callBack={resetValueHandler}
-                        counterValue={counterValue}
+                        counterValue={counterValue.value}
                         maxValue={maxValue.value}
                         startValue={startValue.value}
                         btnState={btnState}
