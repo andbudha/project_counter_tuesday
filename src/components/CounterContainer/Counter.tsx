@@ -1,10 +1,10 @@
-import React, { ChangeEvent, useState } from 'react';
+import React, { ChangeEvent, useEffect, useState } from 'react';
 import styles from './Counter.module.css'
 import { Button } from "../VersatileButton/Button";
 import { useDispatch, useSelector } from "react-redux";
-import { AppRootStateType } from "../../store/store";
+import { AppRootStateType, useAppDispatch } from "../../store/store";
 import { counterValSettingAC, CounterValStateType } from "../../reducers/countervaluereducer";
-import { startValSettingAC, StartValStateType } from "../../reducers/startvaluereducer";
+import { getStartLocalStorageValueTC, startValSettingAC, startValSettingTC, StartValStateType } from "../../reducers/startvaluereducer";
 import { maxValSettingAC, MaxValStateType } from "../../reducers/maxvaluereducer";
 export const Counter = () => {
     //btn state
@@ -19,10 +19,11 @@ export const Counter = () => {
 
     const maxValue = useSelector<AppRootStateType, MaxValStateType>(state => state.maxValue);
 
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch();
 
-
-
+    useEffect(() => {
+        dispatch(getStartLocalStorageValueTC())
+    }, [])
     //max&start values setting func
     const valueSettingHandler = (startValue: number) => {
         dispatch(counterValSettingAC(startValue));
@@ -46,7 +47,7 @@ export const Counter = () => {
 
     //start value catching func
     const startValueGettingHandler = (event: ChangeEvent<HTMLInputElement>) => {
-        dispatch(startValSettingAC(Number(event.currentTarget.value)));
+        dispatch(startValSettingTC(Number(event.currentTarget.value)));
         if (Number(event.currentTarget.value) < 0) {
             setError(true)
         } else {

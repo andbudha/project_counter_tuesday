@@ -1,5 +1,5 @@
 import { applyMiddleware, combineReducers, legacy_createStore } from "redux";
-import { startValReducer, startValSettingACType } from "../reducers/startvaluereducer";
+import { getStartLocalStorageValueACType, startValReducer, startValSettingACType } from "../reducers/startvaluereducer";
 import { maxValReducer, maxValSettingACType } from "../reducers/maxvaluereducer";
 import { counterValReducer, counterValSettingACType } from "../reducers/countervaluereducer";
 import thunk, { ThunkDispatch } from "redux-thunk";
@@ -18,6 +18,7 @@ export type AppRootStateType = ReturnType<typeof rootReducer>;
 export type AppActionsType = startValSettingACType
     | maxValSettingACType
     | counterValSettingACType
+    | getStartLocalStorageValueACType
 
 type AppDispatchType = ThunkDispatch<AppRootStateType, any, AppActionsType>;
 export const useAppDispatch = () => useDispatch<AppDispatchType>();
