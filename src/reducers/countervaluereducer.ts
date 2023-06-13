@@ -1,9 +1,8 @@
+import { AppActionsType } from "../store/store";
 
 const InitialState = { value: 0 }
 
 export type CounterValStateType = typeof InitialState;
-
-type AppActionsType = counterValSettingACType;
 
 export const counterValReducer = (state: CounterValStateType = InitialState, action: AppActionsType): CounterValStateType => {
     switch (action.type) {
@@ -16,7 +15,7 @@ export const counterValReducer = (state: CounterValStateType = InitialState, act
     }
 }
 
-type counterValSettingACType = ReturnType<typeof counterValSettingAC>
+export type counterValSettingACType = ReturnType<typeof counterValSettingAC>
 export const counterValSettingAC = (value: number) => {
     return {
         type: 'SET-COUNTER-VALUE',
