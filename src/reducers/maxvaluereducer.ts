@@ -1,9 +1,8 @@
+import { AppActionsType } from "../store/store";
 
 const InitialState = { value: 0 };
 
 export type MaxValStateType = typeof InitialState;
-
-type AppActionsType = maxValSettingACType;
 
 export const maxValReducer = (state: MaxValStateType = InitialState, action: AppActionsType): MaxValStateType => {
     switch (action.type) {
@@ -16,7 +15,7 @@ export const maxValReducer = (state: MaxValStateType = InitialState, action: App
     }
 }
 
-type maxValSettingACType = ReturnType<typeof maxValSettingAC>
+export type maxValSettingACType = ReturnType<typeof maxValSettingAC>
 export const maxValSettingAC = (value: number) => {
     return {
         type: 'SET-MAX-VALUE',
