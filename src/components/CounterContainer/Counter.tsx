@@ -3,7 +3,7 @@ import styles from './Counter.module.css'
 import { Button } from "../VersatileButton/Button";
 import { useDispatch, useSelector } from "react-redux";
 import { AppRootStateType, useAppDispatch } from "../../store/store";
-import { counterValSettingAC, CounterValStateType } from "../../reducers/countervaluereducer";
+import { counterValSettingAC, counterValSettingTC, CounterValStateType, getCounterLocalStorageValueTC } from "../../reducers/countervaluereducer";
 import { getStartLocalStorageValueTC, startValSettingAC, startValSettingTC, StartValStateType } from "../../reducers/startvaluereducer";
 import { getMaxLocalStorageValueTC, maxValSettingAC, maxValSettingTC, MaxValStateType } from "../../reducers/maxvaluereducer";
 export const Counter = () => {
@@ -24,10 +24,11 @@ export const Counter = () => {
     useEffect(() => {
         dispatch(getStartLocalStorageValueTC());
         dispatch(getMaxLocalStorageValueTC());
+        dispatch(getCounterLocalStorageValueTC());
     }, [])
     //max&start values setting func
     const valueSettingHandler = (startValue: number) => {
-        dispatch(counterValSettingAC(startValue));
+        dispatch(counterValSettingTC(startValue));
         setBtnState(true);
     }
 
