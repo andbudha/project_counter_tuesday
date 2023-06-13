@@ -1,14 +1,16 @@
 
-export type MaxValStateType = number;
 
-const InitialState: MaxValStateType = 0;
 
-type MaxValAcType = maxValSettingACType;
+const InitialState = { value: 0 };
 
-export const maxValReducer = (state: MaxValStateType = InitialState, action: MaxValAcType): MaxValStateType => {
+export type MaxValStateType = typeof InitialState;
+
+type AppActionsType = maxValSettingACType;
+
+export const maxValReducer = (state: MaxValStateType = InitialState, action: AppActionsType): MaxValStateType => {
     switch (action.type) {
         case "SET-MAX-VALUE": {
-            return action.payload.value;
+            return { ...state, value: action.payload.value }
         }
         default: {
             return state;

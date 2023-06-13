@@ -73,10 +73,10 @@ export const Counter = () => {
                         <input
                             type="number"
                             onChange={maxValueGettingHandler}
-                            value={maxValue}
-                            className={`${maxValue < 0
-                                || maxValue > 0 && maxValue === startValue.value
-                                || maxValue < startValue.value ? styles.input_error : ''}`}
+                            value={maxValue.value}
+                            className={`${maxValue.value < 0
+                                || maxValue.value > 0 && maxValue.value === startValue.value
+                                || maxValue.value < startValue.value ? styles.input_error : ''}`}
                         />
                     </div>
                     <div className={styles.val_container}>
@@ -86,8 +86,8 @@ export const Counter = () => {
                             onChange={startValueGettingHandler}
                             value={startValue.value}
                             className={`${startValue.value < 0
-                                || startValue.value > 0 && maxValue === startValue.value
-                                || maxValue < startValue.value ? styles.input_error : ''}`}
+                                || startValue.value > 0 && maxValue.value === startValue.value
+                                || maxValue.value < startValue.value ? styles.input_error : ''}`}
                         />
                     </div>
                 </div>
@@ -97,7 +97,7 @@ export const Counter = () => {
                         name={'SET'}
                         callBack={() => valueSettingHandler(startValue.value)}
                         counterValue={counterValue}
-                        maxValue={maxValue}
+                        maxValue={maxValue.value}
                         startValue={startValue.value}
                         btnState={btnState}
                     />
@@ -108,10 +108,10 @@ export const Counter = () => {
             <div className={styles.counter_container}>
                 <div className={`
                 ${styles.incr_display} 
-                ${maxValue !== 0 && counterValue === maxValue && styles.max_val}
+                ${maxValue.value !== 0 && counterValue === maxValue.value && styles.max_val}
                 `}>
-                    <span className={`${error || startValue.value < 0 || maxValue < 0 || maxValue > 0 && maxValue === startValue.value || maxValue < startValue.value ? styles.error_msg : ''}`}>
-                        {error || startValue.value < 0 || maxValue < 0 || maxValue > 0 && maxValue === startValue.value || maxValue < startValue.value ? 'Incorrect Value!' : counterValue}
+                    <span className={`${error || startValue.value < 0 || maxValue.value < 0 || maxValue.value > 0 && maxValue.value === startValue.value || maxValue.value < startValue.value ? styles.error_msg : ''}`}>
+                        {error || startValue.value < 0 || maxValue.value < 0 || maxValue.value > 0 && maxValue.value === startValue.value || maxValue.value < startValue.value ? 'Incorrect Value!' : counterValue}
                     </span>
                 </div>
                 <div className={styles.incr_btn_container}>
@@ -120,7 +120,7 @@ export const Counter = () => {
                         name={'INCREMENT'}
                         callBack={() => incrementValueHandler(counterValue)}
                         counterValue={counterValue}
-                        maxValue={maxValue}
+                        maxValue={maxValue.value}
                         startValue={startValue.value}
                         btnState={btnState}
                     />
@@ -129,7 +129,7 @@ export const Counter = () => {
                         name={'RESET'}
                         callBack={resetValueHandler}
                         counterValue={counterValue}
-                        maxValue={maxValue}
+                        maxValue={maxValue.value}
                         startValue={startValue.value}
                         btnState={btnState}
                     />
